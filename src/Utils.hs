@@ -2,8 +2,6 @@ module Utils
   ( myGcd
   , isPrime
   , isPrime2
-  , noFactor
-  , primes
   ) where
 
 myGcd :: Integer -> Integer -> Integer
@@ -37,23 +35,3 @@ isPrime2 n =
     sd = take 1 $ filter (\i -> mod n i == 0) (2:[3,5..sqrtn])
   in
     sd == []
-
-noFactor :: [Integer] -> Integer -> Bool
-noFactor ps n =
-  let
-    r = ceiling $ sqrt $ fromIntegral n
-  in
-    take 1 (filter (\i -> mod n i == 0) (takeWhile (\i -> i <= r) ps)) == []
-
-
-
-{--}
-primes :: [Integer]
-primes = foo [2, 3] [5, 7..]
-{--}
-
-foo :: [Integer] -> [Integer] -> [Integer]
-foo ps (n:ns) =
-  if noFactor ps n
-    then foo (ps++[n]) ns
-    else foo ps ns
