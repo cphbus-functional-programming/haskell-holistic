@@ -2,6 +2,7 @@ module Utils
   ( myGcd
   , isPrime
   , isPrime2
+  , Semaphore (Red, Green, Yellow, OutOfOrder)
   ) where
 
 myGcd :: Integer -> Integer -> Integer
@@ -35,3 +36,11 @@ isPrime2 n =
     sd = take 1 $ filter (\i -> mod n i == 0) (2:[3,5..sqrtn])
   in
     sd == []
+
+data Semaphore = Red | Yellow | Green | OutOfOrder deriving (Show)
+
+instance Eq Semaphore where
+  Red == Red = True
+  (==) Yellow Yellow = True
+  Green == Green = True
+  _ == _ = False
