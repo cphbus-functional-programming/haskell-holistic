@@ -2,18 +2,9 @@ module Main where
 
 import Lib
 import Utils
+import Exercises
 
 -- import qualified Data.Map as Map
-
-class YesNo a where
-  true :: a -> Bool
-  false :: a -> Bool
-  true x = not (false x)
-  false x = not (true x)
-
-instance YesNo Int where
-  true 0 = False
-  true _ = True
 
 main :: IO ()
 main = do
